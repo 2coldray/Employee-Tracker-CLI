@@ -13,7 +13,7 @@ CREATE TABLE department (
 );
 
 -- make role table 
-CREATE TABLE role (
+CREATE TABLE roles (
     id int not null auto_increment,
     title VARCHAR(30),
     salary DECIMAL,
@@ -38,8 +38,15 @@ CREATE TABLE employee (
     role_id int,
     manager_id int null,
     PRIMARY KEY (id),
-    FOREIGN KEY (role_id) REFERENCES role(id),
+    FOREIGN KEY (role_id) REFERENCES roles(id),
     FOREIGN KEY (manager_id) REFERENCES manager(id),
 );
 
 -- test queries
+SELECT * from department;
+
+SELECT * from roles;
+
+SELECT * from manager;
+
+SELECT * from employee;
