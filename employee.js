@@ -188,13 +188,14 @@ function updateEmployee() {
         }
     ]).then(({role_id, id}) => {
         connection.query(
-            "update employee set ? where ?",
-            {
-                role_id: role_id, 
-            },
-            {
-                id: id,
-            }, 
+            "update employee set ? where ?",[
+                {
+                    role_id: role_id, 
+                },
+                {
+                    id: id,
+                }
+            ], 
             (err) => {
                 if (err) throw err;
                 console.log("updated employee")
