@@ -32,6 +32,8 @@ function init() {
             viewAllEmployees();
         } else if (answer === "View All Departments") {
             viewAllDepartments()
+        } else if (answer === "View All Roles") {
+            viewAllRoles()
         }
     })
 }
@@ -52,6 +54,15 @@ function viewAllEmployees() {
 function viewAllDepartments() {
     connection.query(
         `select * from department`, (err, res) => {
+            if (err) throw err;
+            console.table(res)
+        })
+}
+
+//View All Roles
+function viewAllRoles() {
+    connection.query(
+        `select * from roles;`, (err, res) => {
             if (err) throw err;
             console.table(res)
         })
