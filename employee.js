@@ -178,7 +178,7 @@ function updateEmployee() {
     inquirer.prompt([
         {
             name: "role_id",
-            message: "What's the role_id of the employee you want to update?",
+            message: "What's the role_id you want to give to the employee?",
             type: "input"
         },
         {
