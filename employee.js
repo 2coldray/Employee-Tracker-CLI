@@ -30,6 +30,8 @@ function init() {
     ]).then(({answer}) => {
         if (answer === "View All Employees") {
             viewAllEmployees();
+        } else if (answer === "View All Departments") {
+            viewAllDepartments()
         }
     })
 }
