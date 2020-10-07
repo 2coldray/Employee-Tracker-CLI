@@ -57,6 +57,7 @@ function viewAllEmployees() {
         inner join department on roles.department_id = department.id`, (err, res) => {
             if (err) throw err;
             console.table(res);
+            init();
         })
 }
 
@@ -66,6 +67,7 @@ function viewAllDepartments() {
         `select * from department`, (err, res) => {
             if (err) throw err;
             console.table(res)
+            init();
         })
 }
 
@@ -75,6 +77,7 @@ function viewAllRoles() {
         `select * from roles;`, (err, res) => {
             if (err) throw err;
             console.table(res)
+            init();
         })
 }
 
@@ -129,6 +132,7 @@ function addRole() {
             (err) => {
                 if (err) throw err;
                 console.log("added new role")
+                viewAllDepartments();
             })
     })
 }
@@ -168,6 +172,7 @@ function addEmployee() {
             (err) => {
                 if (err) throw err;
                 console.log("successfully")
+                viewAllEmployees();
             }
         )
     })
@@ -199,6 +204,7 @@ function updateEmployee() {
             (err) => {
                 if (err) throw err;
                 console.log("updated employee")
+                viewAllEmployees();
             }
         )
     })
