@@ -25,21 +25,25 @@ function init() {
             name: "answer",
             message: "How would you like to begin?",
             type: "list",
-            choices: ["View All Employees", "View All Departments", "View All Roles", "Add a Department", "Add a Role", "Add an Employee", "Update Employee"]
+            choices: ["View All Employees", "View All Departments", "View All Roles", "Add a Department", "Add a Role", "Add an Employee", "Update Employee", "Exit"]
         }
     ]).then(({answer}) => {
         if (answer === "View All Employees") {
             viewAllEmployees();
         } else if (answer === "View All Departments") {
-            viewAllDepartments()
+            viewAllDepartments();
         } else if (answer === "View All Roles") {
-            viewAllRoles()
+            viewAllRoles();
         } else if (answer === "Add a Department") {
-            addDepartment()
+            addDepartment();
         } else if (answer === "Add a Role") {
             addRole();
         } else if (answer === "Add an Employee") {
-            addEmployee()
+            addEmployee();
+        } else if (answer === "Update Employee") {
+            updateEmployee()
+        } else if (answer === "Exit") {
+            connection.end();
         }
     })
 }
@@ -164,6 +168,34 @@ function addEmployee() {
             (err) => {
                 if (err) throw err;
                 console.log("successfully")
+            }
+        )
+    })
+}
+
+//Update Employee
+function updateEmployee() {
+    inquirer.prompt([
+        {
+            name: "role_id",
+            message: "What's the role_id of the employee you want to update?",
+            type: "input"
+        },
+        {
+            name: "id",
+            message: "What's their employee id?",
+            type: "input"
+        }
+    ]).then(({role_id, id}) => {
+        connection.query(
+            "update employee set ? where ?",
+            {
+                role_id: role_id,
+                id: id
+            }, 
+            (err) => {
+                if (err) throw err;
+                console.log("updated employee")
             }
         )
     })
