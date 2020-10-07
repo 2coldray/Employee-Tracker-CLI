@@ -190,8 +190,10 @@ function updateEmployee() {
         connection.query(
             "update employee set ? where ?",
             {
-                role_id: role_id,
-                id: id
+                role_id: role_id, 
+            },
+            {
+                id: id,
             }, 
             (err) => {
                 if (err) throw err;
