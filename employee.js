@@ -34,6 +34,8 @@ function init() {
             viewAllDepartments()
         } else if (answer === "View All Roles") {
             viewAllRoles()
+        } else if (answer === "Add a Department") {
+            addDepartment()
         }
     })
 }
@@ -66,4 +68,26 @@ function viewAllRoles() {
             if (err) throw err;
             console.table(res)
         })
+}
+
+//Add department
+function addDepartment() {
+    inquirer.prompt([
+        {
+            name: "department",
+            type: "input",
+            message: "What's the name of the department you want to add?",        
+        }
+    ]).then(({department}) => {
+        connection.query(
+            "insert into department set ?", 
+            {
+                name: department
+            }, 
+            (err) => {
+                if (err) throw err;
+                console.log("added department")
+            }
+        )
+    })
 }
