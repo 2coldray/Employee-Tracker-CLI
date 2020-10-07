@@ -36,6 +36,8 @@ function init() {
             viewAllRoles()
         } else if (answer === "Add a Department") {
             addDepartment()
+        } else if (answer === "Add a Role") {
+            addRole();
         }
     })
 }
@@ -89,5 +91,38 @@ function addDepartment() {
                 console.log("added department")
             }
         )
+    })
+}
+
+//Add a role
+function addRole() {
+    inquirer.prompt([
+        {
+            name: "title",
+            message: "What's the title of the role?",
+            type: "input"
+        },
+        {
+            name: "salary",
+            message: "What's the salary?",
+            type: "input"
+        },
+        {
+            name: "department_id",
+            message: "What's the id of the department?",
+            type: "input"
+        },
+    ]).then(({title, salary, department_id}) => {
+        connection.query(
+            "insert into roles set ?",
+            {
+                title: title,
+                salary: salary,
+                department_id: department_id
+            },
+            (err) => {
+                if (err) throw err;
+                console.log("added new role")
+            })
     })
 }
