@@ -23,7 +23,7 @@ CREATE TABLE roles (
 );
 
 -- make employee table 
--- add manager manually for this
+-- add manager manually for this, self join doesn't make sense to me yet
 CREATE TABLE employee (
     id int not null auto_increment,
     first_name VARCHAR(30),
