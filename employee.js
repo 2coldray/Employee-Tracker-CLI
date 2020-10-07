@@ -98,6 +98,7 @@ function addDepartment() {
             (err) => {
                 if (err) throw err;
                 console.log("added department")
+                init()
             }
         )
     })
@@ -132,7 +133,7 @@ function addRole() {
             (err) => {
                 if (err) throw err;
                 console.log("added new role")
-                viewAllDepartments();
+                init();
             })
     })
 }
@@ -172,7 +173,7 @@ function addEmployee() {
             (err) => {
                 if (err) throw err;
                 console.log("successfully")
-                viewAllEmployees();
+                init();
             }
         )
     })
@@ -204,7 +205,7 @@ function updateEmployee() {
             (err) => {
                 if (err) throw err;
                 console.log("updated employee")
-                viewAllEmployees();
+                init();
             }
         )
     })
