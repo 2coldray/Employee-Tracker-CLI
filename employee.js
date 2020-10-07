@@ -38,6 +38,8 @@ function init() {
             addDepartment()
         } else if (answer === "Add a Role") {
             addRole();
+        } else if (answer === "Add an Employee") {
+            addEmployee()
         }
     })
 }
@@ -124,5 +126,45 @@ function addRole() {
                 if (err) throw err;
                 console.log("added new role")
             })
+    })
+}
+
+//Add an employee
+function addEmployee() {
+    inquirer.prompt([
+        {
+            name: "firstName",
+            message: "What's your first name?",
+            type: "input"
+        },
+        {
+            name: "lastName",
+            message: "What's your last name?",
+            type: "input"
+        },
+        {
+            name: "role_id",
+            message: "What's your role id?",
+            type: "input"
+        },
+        {
+            name: "manager",
+            message: "Who's your manager?",
+            type: "input"
+        },
+    ]).then(({firstName, lastName, role_id, manager}) => {
+        connection.query(
+            "insert into employee set ?",
+            {
+                first_name: firstName,
+                last_name: lastName,
+                role_id: role_id,
+                manager: manager
+            },
+            (err) => {
+                if (err) throw err;
+                console.log("successfully")
+            }
+        )
     })
 }
